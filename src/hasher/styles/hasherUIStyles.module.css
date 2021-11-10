@@ -15,3 +15,13 @@
   outline: none;
   transition: border .24s ease-in-out;
 }
+
+table {
+  margin:auto;
+  width:80vw;
+  
+}
+td{
+    border:1px solid grey;
+}
+

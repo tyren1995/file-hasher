@@ -12,6 +12,7 @@ const FileHasherUI = (props) => {
   ));
 
   return (
+    <div >
     <section className={styles.container}>
       <div {...getRootProps({className: 'dropzone'})}>
         <input {...getInputProps()} />
@@ -22,6 +23,28 @@ const FileHasherUI = (props) => {
         <ul>{files}</ul>
       </aside>
     </section>
+
+    <table>
+      <thead>
+        <tr>
+    <td>File Name</td>
+    <td>File Size</td>
+    <td>SHA-1</td>
+    <td>MD5</td>
+    <td>Some Other Hash</td>
+    </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <td>hola</td>
+    <td>1 million billion trillion dollars</td>
+    <td>aeg4ea56g4ea564687ea</td>
+    <td>aeg156ea4g56ae4g</td>
+    <td>aeg5456ae4g56ae4</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
   );
 }
 
