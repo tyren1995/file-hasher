@@ -1,19 +1,28 @@
-import React, {useCallback} from 'react';
-import Dropzone from 'react-dropzone';
+import React from 'react';
+import styles from '../styles/hasherUIStyles.module.css'
+import {useDropzone} from 'react-dropzone';
 
-const FileHasherUI = () => {
-    return(
-        <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
-  {({getRootProps, getInputProps}) => (
-    <section>
-      <div {...getRootProps()}>
+const FileHasherUI = (props) => {
+  const {acceptedFiles, getRootProps, getInputProps} = useDropzone();
+  
+  const files = acceptedFiles.map(file => (
+    <li key={file.path}>
+      {file.path} - {file.size} bytes
+    </li>
+  ));
+
+  return (
+    <section className={styles.container}>
+      <div {...getRootProps({className: 'dropzone'})}>
         <input {...getInputProps()} />
         <p>Drag 'n' drop some files here, or click to select files</p>
       </div>
+      <aside>
+        <h4>Files</h4>
+        <ul>{files}</ul>
+      </aside>
     </section>
-  )}
-</Dropzone>
-    )
+  );
 }
 
 export default FileHasherUI;
