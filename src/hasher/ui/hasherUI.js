@@ -2,9 +2,10 @@ import React from 'react';
 import styles from '../styles/hasherUIStyles.module.css';
 import FileHasherLogic from '../logic/hasherLogic';
 import {useDropzone} from 'react-dropzone';
+import ClipLoader from "react-spinners/ClipLoader";
 
 const FileHasherUI = (props) => {
-  const { hashFiles, deleteFile, hashedFiles } = FileHasherLogic();
+  const { hashFiles, deleteFile, hashedFiles, isLoading } = FileHasherLogic();
   const {getRootProps, getInputProps} = useDropzone({onDrop:hashFiles});
   
   
@@ -16,19 +17,12 @@ const FileHasherUI = (props) => {
       <td align="right">{hashedFile['md5_hash'] ? (hashedFile['md5_hash']) : ('NA')}</td>
       <td align="right">{hashedFile['sha1-base16'] ? (hashedFile['sha1-base16']) : ('NA')}</td>
       <td align="right">{hashedFile['sha2'] ? (hashedFile['sha2']) : ('NA')}</td>
-      <td align="right"><button style={{zIndex:550}} onClick={(e)=> {e.stopPropagation(); deleteFile(hashedFile)}}>Delete</button></td>
+      <td align="right" className={styles.buttonCell}><button onClick={(e)=> {e.stopPropagation(); deleteFile(hashedFile)}}><b>Delete</b></button></td>
     </tr>
   ));
 
-  return (
-    <div className={styles.container}>
-      <div {...getRootProps({className: 'dropzone'})}>
-        <input {...getInputProps()} />
-        <p>Drag 'n' drop some files here, or click to select files</p>
-      
-      <section>
-        <h4>Files</h4>
-        <table>
+  const table = () => (
+    <table>
       <thead>
         <tr>
     <th>File Name</th>
@@ -37,6 +31,7 @@ const FileHasherUI = (props) => {
     <th>MD5</th>
     <th>SHA-1</th>
     <th>SHA-2</th>
+    <th>Actions</th>
     
     </tr>
       </thead>
@@ -44,6 +39,16 @@ const FileHasherUI = (props) => {
         {files}
       </tbody>
     </table>
+  );
+
+  return (
+    <div className={styles.container}>
+      <div {...getRootProps({className: 'dropzone'})}>
+        <input {...getInputProps()} />
+        <p>Drag 'n' drop some files here, or click to select files</p>
+      
+      <section>
+        {isLoading? (<ClipLoader/>) : (table())}
       </section>
       </div>
     </div>

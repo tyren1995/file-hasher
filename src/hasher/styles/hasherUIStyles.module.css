@@ -39,4 +39,12 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+button {
+  padding:5px;
+  width:80%;
+  border-radius: 5px;
+}
+.buttonCell {
+  text-align: center;
+}
 

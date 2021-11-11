@@ -7,11 +7,14 @@ import { useState } from 'react';
 
 const FileHasherLogic = () => {
     const [hashedFiles, setHashedFiles] = useState([]);
+    const [isLoading, setLoading] = useState(false);
   
-    const hashFiles = async (files) => {
-  
+    const hashFiles =  (files) => {
+        setLoading(true);
       if (files[0] !== undefined) {
+        
         try {
+           
           files.forEach((file) => {
             var reader = new FileReader();
             reader.addEventListener(
@@ -30,12 +33,16 @@ const FileHasherLogic = () => {
                                 }])
                 });
                 reader.readAsArrayBuffer(file);
+                
           })
+          setLoading(false);
         }
   
         catch (e) {
 
-          alert('There was an error hashing your files:', e)
+          alert('There was an error hashing your files:', e);
+          setLoading(false);
+          
         }
       }
     }
@@ -44,7 +51,7 @@ const FileHasherLogic = () => {
      setHashedFiles(filesNotDeleted);
   }
   
-    return { hashFiles, deleteFile, hashedFiles }
+    return { hashFiles, deleteFile, hashedFiles,isLoading }
   
   };
   
