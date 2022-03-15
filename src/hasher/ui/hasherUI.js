@@ -32,6 +32,7 @@ const FileHasherUI = (props) => {
     </div>
   ) : 
   (
+    <div>
     <table>
       <thead>
         <tr>
@@ -49,6 +50,11 @@ const FileHasherUI = (props) => {
         {files}
       </tbody>
     </table>
+    <h2 style={{cursor:'pointer'}}>
+    <input {...getInputProps()} />
+      +
+    </h2>
+    </div>
   )
   );
 
