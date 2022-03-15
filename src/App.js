@@ -2,10 +2,10 @@ import FileHasherUI from "./hasher/ui/hasherUI";
 
 function App() {
   const styles= {
-   container:{ textAlign:'center',display:'flex',flexDirection:'column',alignItems:'stretch',minHeight:'100vh',minWidth:'100%'},
-    headers : {backgroundColor:'lightgrey',height:'47px', flexShrink:0},
+   container:{ fontFamily:'sans-serif',textAlign:'center',display:'flex',flexDirection:'column',alignItems:'stretch',minHeight:'100vh',minWidth:'100%'},
+    headers : {backgroundImage: "linear-gradient(#004C98,#00264C)",height:'47px', flexShrink:0},
     main :{flexGrow:1, flexShrink:0},
-    mainBox : {height:'75vh',border:'1px solid grey',margin:'6%'},
+    mainBox : {backgroundImage: "linear-gradient(#FFFFFF,#D5D5D3)",height:'70vh',border:'1px solid grey',margin:'4% 6%'},
     font : {color:'grey'}
   }
   return (
@@ -17,7 +17,7 @@ function App() {
         <FileHasherUI />
       </div>
       </div>
-      <footer  style={styles.headers}><h2>Tyren's File Hasher</h2></footer>
+      <footer  style={styles.headers}/>
     </div>
   );
 }

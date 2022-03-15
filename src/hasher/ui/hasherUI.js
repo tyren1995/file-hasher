@@ -3,6 +3,7 @@ import styles from '../styles/hasherUIStyles.module.css';
 import FileHasherLogic from '../logic/hasherLogic';
 import { useDropzone } from 'react-dropzone';
 import ClipLoader from "react-spinners/ClipLoader";
+import downloadImage from "../assets/download.png";
 
 const FileHasherUI = (props) => {
   const { hashFiles, deleteFile, hashedFiles, isLoading } = FileHasherLogic();
@@ -21,7 +22,16 @@ const FileHasherUI = (props) => {
     </tr>
   ));
 
-  const table = () => (
+  const hasher = () => (
+  files.length === 0 ? (
+  
+    <div className={styles.uploader}>
+      <input {...getInputProps()} />
+      <img src={downloadImage} />
+      <h2>Click to Choose a File, or Drop It Here</h2>
+    </div>
+  ) : 
+  (
     <table>
       <thead>
         <tr>
@@ -39,19 +49,13 @@ const FileHasherUI = (props) => {
         {files}
       </tbody>
     </table>
+  )
   );
 
   return (
-    <div className={styles.container}>
       <div {...getRootProps({ className: 'dropzone' })}>
-        <input {...getInputProps()} />
-        <p>Drag 'n' drop some files here, or click to select files</p>
-
-        <section>
-          {isLoading ? (<ClipLoader />) : (table())}
-        </section>
+          {isLoading ? (<ClipLoader />) : (hasher())}
       </div>
-    </div>
   );
 }
 
